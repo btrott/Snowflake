@@ -1,5 +1,5 @@
 use strict;
-use Test::More tests => 10;
+use Test::More tests => 11;
 
 use File::Slurp;
 use Snowflake;
@@ -27,4 +27,10 @@ use Test::Exception;
     my $syntaxer = Snowflake->new( __FILE__, 'perl' );
     is $syntaxer->colorize, Snowflake->colorize( __FILE__, 'perl' ),
         'colorize class method works';
+}
+
+{
+    local $Snowflake::Bin = '/no/such/script';
+    throws_ok { Snowflake->colorize( __FILE__, 'perl' ) }
+        qr/can't find pygmentize/, 'croak if we can\'t find pygmentize';
 }
