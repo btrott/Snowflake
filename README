@@ -1,0 +1,54 @@
+NAME
+    Snowflake - Wrapper for the Pygments command line tool, pygmentize.
+
+SYNOPSIS
+        use Snowflake;
+        my $syntaxer = Snowflake->new( '/some/file.pl', 'perl' );
+        print $syntaxer->colorize;
+
+DESCRIPTION
+    *Snowflake* is a port of (the Ruby package) *Albino* to Perl; like that
+    package, it requires the pygmentize command-line tool.
+
+    Assumes pygmentize is in the path. If not, set its location with
+    "$Snowflake::Bin = '/path/to/pygmentize'".
+
+    This'll print out an HTMLized, Perl-highlighted version of
+    /some/file.pl.
+
+        my $syntaxer = Snowflake->new( '/some/file.pl', 'perl' );
+        print $syntaxer->colorize;
+
+    To use another formatter, pass it as the third argument:
+
+        my $syntaxer = Snowflake->new( '/some/file.pl', 'ruby', 'bbcode' );
+        print $syntaxer->colorize;
+
+    You can also use the colorize class method:
+
+        print Snowflake->colorize( '/some/file.pl', 'perl' );
+
+    Stringification is also overloaded on *Snowflake* objects, for nicer use
+    in templates. For example:
+
+        sub pretty_print {
+            return Snowflake->new( \shift, 'perl' );
+        }
+
+    The default lexer is "text". You need to specify a lexer yourself;
+    because we are using STDIN there is no auto-detect.
+
+    To see all lexers and formatters available, run "pygmentize -L".
+
+AUTHOR
+    Benjamin Trott <ben@sixapart.com>
+
+LICENSE
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+
+SEE ALSO
+    *   Pygments: http://pygments.org/
+
+    *   Albino: http://github.com/github/albino
+

@@ -1,0 +1,14 @@
+use inc::Module::Install;
+name 'Snowflake';
+all_from 'lib/Snowflake.pm';
+readme_from 'lib/Snowflake.pm';
+requires 'Any::Moose';
+requires 'File::Slurp';
+requires 'File::Which';
+requires 'IPC::Run';
+build_requires 'Test::More';
+use_test_base;
+auto_include_deps;
+author_tests('xt');
+auto_set_repository;
+WriteAll;
