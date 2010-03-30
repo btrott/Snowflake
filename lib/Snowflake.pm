@@ -114,6 +114,8 @@ it under the same terms as Perl itself.
 
 =item * Albino: http://github.com/github/albino
 
+=item * Snowflake, the albino gorilla: http://en.wikipedia.org/wiki/Snowflake_(gorilla)
+
 =back
 
 =cut
